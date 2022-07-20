@@ -7,3 +7,14 @@
     width: 50%;
   }
 }
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .add-button {
+    @include button;
+    margin: 2rem 0;
+  }
+}

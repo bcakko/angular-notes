@@ -12,6 +12,7 @@ export class AddNoteComponent implements OnInit {
   @ViewChild('noteHeading', { static: true }) noteHeading!: ElementRef;
   @ViewChild('noteDetails', { static: true }) noteDetails!: ElementRef;
   error!: Error | false;
+  isFormShown: boolean = false;
 
   constructor(private noteService: NoteService) {}
 
@@ -32,4 +33,9 @@ export class AddNoteComponent implements OnInit {
   }
 
   onClose() {}
+
+  toggleForm() {
+    this.isFormShown = !this.isFormShown;
+    console.log(this.isFormShown);
+  }
 }

@@ -1,6 +1,7 @@
 @import "../../styles/variables.scss";
 @import "./button.scss";
 @import "./input.scss";
+@import "../breakpoints.scss";
 
 @mixin form-group {
   width: 50%;
@@ -27,5 +28,16 @@
   input:focus {
     border-color: $main-green;
     outline: none;
+  }
+
+  .dark {
+    background-color: $danger-color;
+  }
+
+  @include devices(tablet) {
+    width: 70%;
+  }
+  @include devices(mobile) {
+    width: 90%;
   }
 }
