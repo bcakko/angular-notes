@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NoteService } from 'src/app/services/note.service';
+import { Error } from 'src/app/shared/error.model';
 import { Note } from 'src/app/shared/note.model';
 
 @Component({
@@ -10,18 +11,25 @@ import { Note } from 'src/app/shared/note.model';
 export class AddNoteComponent implements OnInit {
   @ViewChild('noteHeading', { static: true }) noteHeading!: ElementRef;
   @ViewChild('noteDetails', { static: true }) noteDetails!: ElementRef;
+  error!: Error | false;
 
   constructor(private noteService: NoteService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.noteService.error.subscribe((value) => {
+      this.error = value;
+    });
+  }
 
   onAddNote() {
-    const note: Note = {
-      id: Math.random(),
-      heading: this.noteHeading.nativeElement.value,
-      note: this.noteDetails.nativeElement.value,
-    };
+    const note = new Note(
+      Math.random(),
+      this.noteHeading.nativeElement.value,
+      this.noteDetails.nativeElement.value
+    );
 
     this.noteService.addNote(note);
   }
+
+  onClose() {}
 }

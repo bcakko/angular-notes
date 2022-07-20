@@ -1,0 +1,9 @@
+@import "../../styles/mixins/form-group.scss";
+@import "../../styles/mixins/button-group.scss";
+
+.note-form {
+  @include form-group;
+  button {
+    width: 50%;
+  }
+}
