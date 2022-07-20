@@ -1,0 +1,15 @@
+<div class="container">
+  <a [routerLink]="'/'" class="logo">Home</a>
+  <div class="header-links">
+    <a *ngIf="!isLoggedIn" [routerLink]="'login'" class="header-link">Login</a>
+    <a
+      *ngIf="isLoggedIn"
+      [routerLink]="'/'"
+      (click)="onLogout()"
+      class="header-link"
+      >Logout</a
+    >
+
+    <a [routerLink]="'notes'" class="header-link">Notes</a>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<form class="login-form">
+  <label for="username">Username</label>
+  <input id="username" type="text" #usernameInput />
+  <label for="password">Password</label>
+  <input id="password" type="password" #passwordInput />
+  <div class="button-group">
+    <button type="button" (click)="onLogin()">Login</button>
+    <button type="button" (click)="onReturnHome()">Return Home</button>
+  </div>
+  <p *ngIf="error" class="error">{{ error.message }}</p>
+</form>
