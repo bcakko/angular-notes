@@ -1,0 +1,13 @@
+@import "../../../styles/_colors.scss";
+@import "../../../styles/mixins/button.scss";
+
+.button {
+  @include button;
+}
+
+.button-danger {
+  background-color: $danger-color;
+}
+.button-green {
+  background-color: $main-green;
+}

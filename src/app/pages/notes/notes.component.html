@@ -1,0 +1,51 @@
+<app-add-note (addNoteEvent)="addNote($event)"></app-add-note>
+<div cdkDropListGroup>
+  <div
+    class="notes-group"
+    cdkDropList
+    [cdkDropListData]="notes"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <h2>To do</h2>
+    <div class="note-container" *ngFor="let note of notes" cdkDrag>
+      <div class="note-details">
+        <h2>{{ note.heading }}</h2>
+        <p>{{ note.note }}</p>
+      </div>
+      <div class="note-buttons">
+        <app-button-with-icon
+          [icon_class]="'icon-pencil'"
+        ></app-button-with-icon>
+        <app-button-with-icon
+          [icon_class]="'icon-cross'"
+          (buttonClick)="removeNote(note.id)"
+        ></app-button-with-icon>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="notes-group"
+    cdkDropList
+    [cdkDropListData]="done"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <h2>Done</h2>
+
+    <div class="note-container" *ngFor="let note of done" cdkDrag>
+      <div class="note-details">
+        <h2>{{ note.heading }}</h2>
+        <p>{{ note.note }}</p>
+      </div>
+      <div class="note-buttons">
+        <app-button-with-icon
+          [icon_class]="'icon-pencil'"
+        ></app-button-with-icon>
+        <app-button-with-icon
+          [icon_class]="'icon-cross'"
+          (buttonClick)="removeNote(note.id)"
+        ></app-button-with-icon>
+      </div>
+    </div>
+  </div>
+</div>

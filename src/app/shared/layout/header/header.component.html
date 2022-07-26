@@ -1,0 +1,29 @@
+<div class="container">
+  <a
+    [routerLink]="'/'"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="header-link"
+    >Home</a
+  >
+  <div class="header-links">
+    <a
+      *ngIf="!isLoggedIn"
+      [routerLink]="'login'"
+      routerLinkActive="active"
+      class="header-link"
+      >Login</a
+    >
+    <a
+      *ngIf="isLoggedIn"
+      [routerLink]="'/'"
+      (click)="onLogout()"
+      class="header-link"
+      >Logout</a
+    >
+
+    <a [routerLink]="'notes'" routerLinkActive="active" class="header-link"
+      >Notes</a
+    >
+  </div>
+</div>

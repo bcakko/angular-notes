@@ -1,0 +1,22 @@
+@import "../../../styles/colors";
+
+.note-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 2px solid $main-brown;
+  padding: 0.25rem;
+  background-color: $base-color;
+  color: $main-brown;
+  margin: 0.5rem 0 ;
+  cursor: move;
+  position: relative;
+
+  .note-details {
+    width: 75%;
+  }
+  .note-buttons {
+    width: 25%;
+  }
+}

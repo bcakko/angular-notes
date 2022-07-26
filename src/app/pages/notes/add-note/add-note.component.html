@@ -1,0 +1,55 @@
+<form class="note-form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <h3>Add something to do here:</h3>
+  <div class="button-group">
+    <button
+      type="button"
+      class="button primary"
+      [hidden]="isFormShown"
+      (click)="toggleForm()"
+    >
+      ADD
+    </button>
+  </div>
+  <div [hidden]="!isFormShown">
+    <div class="input-group">
+      <label for="heading">Heading</label>
+      <input
+        id="heading"
+        type="text"
+        class="input"
+        placeholder="Enter a heading."
+        ngModel
+        name="heading"
+        required
+        #heading="ngModel"
+      />
+      <span *ngIf="!heading.valid && heading.touched" class="warning"
+        >*Heading can not be empty!</span
+      >
+    </div>
+    <div class="input-group">
+      <label for="note">Note</label>
+      <input
+        id="note"
+        type="text"
+        class="input"
+        placeholder="Enter your note."
+        ngModel
+        name="note"
+        required
+        #note="ngModel"
+      />
+      <span *ngIf="!note.valid && note.touched" class="warning"
+        >*Note can not be empty!</span
+      >
+    </div>
+    <div class="button-group">
+      <button type="submit" [disabled]="!f.valid" class="button primary">
+        Submit
+      </button>
+      <button type="button" (click)="toggleForm()" class="button danger">
+        Cancel
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,22 @@
+@import "../../styles/_colors.scss";
+@import "./button.scss";
+@import "./input.scss";
+@import "../_breakpoints.scss";
+
+@mixin container {
+  width: 50%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  color: $base-color;
+  background-color: $accent-color;
+  border: 3px solid $main-brown;
+  border-radius: 25px;
+
+  @include devices(tablet) {
+    width: 70%;
+  }
+  @include devices(mobile) {
+    width: 90%;
+  }
+}

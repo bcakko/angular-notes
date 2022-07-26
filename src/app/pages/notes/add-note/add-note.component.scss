@@ -1,0 +1,32 @@
+@import "../../../styles/mixins/container.scss";
+@import "../../../styles/mixins/button-group.scss";
+
+.note-form {
+  @include container;
+  margin-bottom: 1rem;
+
+  .button-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .button {
+      @include button;
+      width: 40%;
+      margin: 0 0.75rem;
+    }
+  }
+
+  .input-group {
+    margin-bottom: 1rem;
+
+    input {
+      @include input;
+    }
+
+    label {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+@import "../../../styles/_colors.scss";
+
+.icon-button {
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  background-color: inherit;
+
+  .icon {
+    font-size: 1.5rem;
+  }
+}
