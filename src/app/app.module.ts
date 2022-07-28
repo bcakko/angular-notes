@@ -23,6 +23,7 @@ import { AppComponent } from './app.component';
     SharedModule,
     FormsModule,
   ],
+  exports: [AppComponent],
   providers: [AuthGuard, LoginGuard, AuthService],
   bootstrap: [AppComponent],
 })

@@ -3,18 +3,29 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from 'src/app/shared/models/note.model';
 
 @Component({
-  selector: 'app-note',
+  selector: 'note',
   templateUrl: './note.component.html',
   styleUrls: ['./note.component.scss'],
 })
 export class NoteComponent {
-  @Input() note_box_class!: string;
   @Input() note_details!: Note;
-  @Output() removeNoteEvent = new EventEmitter<number>();
+  @Input() key!: 'notes' | 'done';
+  @Output() toggleEditEvent = new EventEmitter<{
+    note: Note;
+    key: 'notes' | 'done';
+  }>();
+  @Output() removeNoteEvent = new EventEmitter<{
+    id: number;
+    key: 'notes' | 'done';
+  }>();
 
   constructor() {}
 
+  onToggleEdit() {
+    this.toggleEditEvent.emit({ note: this.note_details, key: this.key });
+  }
+
   onRemoveNote() {
-    this.removeNoteEvent.emit(this.note_details.id);
+    this.removeNoteEvent.emit({ id: this.note_details.id, key: this.key });
   }
 }

@@ -1,4 +1,5 @@
-<app-add-note (addNoteEvent)="addNote($event)"></app-add-note>
+<add-note (addNoteEvent)="addNote($event)"></add-note>
+
 <div cdkDropListGroup>
   <div
     class="notes-group"
@@ -7,20 +8,14 @@
     (cdkDropListDropped)="drop($event)"
   >
     <h2>To do</h2>
-    <div class="note-container" *ngFor="let note of notes" cdkDrag>
-      <div class="note-details">
-        <h2>{{ note.heading }}</h2>
-        <p>{{ note.note }}</p>
-      </div>
-      <div class="note-buttons">
-        <app-button-with-icon
-          [icon_class]="'icon-pencil'"
-        ></app-button-with-icon>
-        <app-button-with-icon
-          [icon_class]="'icon-cross'"
-          (buttonClick)="removeNote(note.id)"
-        ></app-button-with-icon>
-      </div>
+    <p *ngIf="!notes.length">There's nothing to do..</p>
+    <div class="note-wrapper" *ngFor="let note of notes" cdkDrag>
+      <note
+        [note_details]="note"
+        [key]="'notes'"
+        (toggleEditEvent)="toggleEdit($event)"
+        (removeNoteEvent)="removeNote($event)"
+      ></note>
     </div>
   </div>
 
@@ -31,21 +26,22 @@
     (cdkDropListDropped)="drop($event)"
   >
     <h2>Done</h2>
-
-    <div class="note-container" *ngFor="let note of done" cdkDrag>
-      <div class="note-details">
-        <h2>{{ note.heading }}</h2>
-        <p>{{ note.note }}</p>
-      </div>
-      <div class="note-buttons">
-        <app-button-with-icon
-          [icon_class]="'icon-pencil'"
-        ></app-button-with-icon>
-        <app-button-with-icon
-          [icon_class]="'icon-cross'"
-          (buttonClick)="removeNote(note.id)"
-        ></app-button-with-icon>
-      </div>
+    <p *ngIf="!done.length">You haven't done anything yet..</p>
+    <div class="note-wrapper" *ngFor="let note of done" cdkDrag>
+      <note
+        [note_details]="note"
+        [key]="'done'"
+        (toggleEditEvent)="toggleEdit($event)"
+        (removeNoteEvent)="removeNote($event)"
+      ></note>
     </div>
   </div>
 </div>
+
+<edit-note
+  *ngIf="isEditing"
+  [key]="editingKey"
+  [note_details]="editingNote"
+  (closeEditEvent)="cancelEdit()"
+  (editNoteSubmitEvent)="editNote($event)"
+></edit-note>

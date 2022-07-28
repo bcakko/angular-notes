@@ -1,13 +1,16 @@
 <div class="note-container">
-  <div [class]="note_box_class + ' ' + 'note-details'">
+  <div class="note-details">
     <h2>{{ note_details.heading }}</h2>
     <p>{{ note_details.note }}</p>
   </div>
   <div class="note-buttons">
-    <app-button-with-icon [icon_class]="'icon-pencil'"></app-button-with-icon>
-    <app-button-with-icon
+    <button-with-icon
+      [icon_class]="'icon-pencil'"
+      (buttonClick)="onToggleEdit()"
+    ></button-with-icon>
+    <button-with-icon
       [icon_class]="'icon-cross'"
       (buttonClick)="onRemoveNote()"
-    ></app-button-with-icon>
+    ></button-with-icon>
   </div>
 </div>

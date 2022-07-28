@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { AddNoteComponent } from './notes/add-note/add-note.component';
 import { NoteComponent } from './notes/note/note.component';
 import { NotesComponent } from './notes/notes.component';
+import { EditNoteComponent } from './notes/edit-note/edit-note.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NotesComponent } from './notes/notes.component';
     LoginComponent,
     NoteComponent,
     AddNoteComponent,
+    EditNoteComponent,
   ],
   imports: [BrowserModule, SharedModule, FormsModule, DragDropModule],
 })

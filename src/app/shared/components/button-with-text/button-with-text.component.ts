@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-button-with-text',
+  selector: 'button-with-text',
   templateUrl: './button-with-text.component.html',
   styleUrls: ['./button-with-text.component.scss'],
 })

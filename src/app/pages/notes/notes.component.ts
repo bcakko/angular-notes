@@ -8,17 +8,16 @@ import {
 import { Note } from 'src/app/shared/models/note.model';
 
 @Component({
-  selector: 'app-notes',
+  selector: 'notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
 })
-
 export class NotesComponent {
   notes: Note[] = this.getData('notes');
-  done: Note[] = [
-    { id: Math.random(), heading: 'Brush teeth', note: '7:30 AM' },
-    { id: Math.random(), heading: 'Drive Car', note: '8:30 PM' },
-  ];
+  done: Note[] = this.getData('done');
+  isEditing: boolean = false;
+  editingNote!: Note;
+  editingKey!: 'notes' | 'done';
 
   constructor() {}
 
@@ -27,17 +26,66 @@ export class NotesComponent {
     this.setData('notes', this.notes);
   }
 
-  removeNote(id: number) {
-    this.notes = this.notes.filter((item) => item.id !== id);
-    this.setData('notes', this.notes);
+  toggleEdit(detailsObj: { note: Note; key: 'notes' | 'done' }) {
+    this.isEditing = !this.isEditing;
+    this.editingNote = detailsObj.note;
+    this.editingKey = detailsObj.key;
   }
 
-  setData(key: string, value: Note[]) {
+  cancelEdit() {
+    this.isEditing = false;
+  }
+
+  editNote(detailsObj: { note: Note; key: 'notes' | 'done' }) {
+    let newArr: Note[] = [];
+    console.log(detailsObj);
+    if (detailsObj.key === 'notes') {
+      newArr = this.notes.map((note) => {
+        if (note.id === detailsObj.note.id) {
+          return {
+            ...note,
+            heading: detailsObj.note.heading,
+            note: detailsObj.note.note,
+          };
+        }
+        return note;
+      });
+      this.notes = newArr;
+    } else {
+      newArr = this.done.map((note) => {
+        if (note.id === detailsObj.note.id) {
+          return {
+            ...note,
+            heading: detailsObj.note.heading,
+            note: detailsObj.note.note,
+          };
+        }
+        return note;
+      });
+      this.done = newArr;
+    }
+
+    this.setData(detailsObj.key, newArr);
+  }
+
+  removeNote(detailsObj: { id: number; key: 'notes' | 'done' }) {
+    let newArr: Note[] = [];
+    if (detailsObj.key === 'notes') {
+      newArr = this.notes.filter((item) => item.id !== detailsObj.id);
+      this.notes = newArr;
+    } else {
+      newArr = this.done.filter((item) => item.id !== detailsObj.id);
+      this.done = newArr;
+    }
+    this.setData(detailsObj.key, newArr);
+  }
+
+  setData(key: 'notes' | 'done', value: Note[]) {
     const localValue = JSON.stringify(value);
     localStorage.setItem(key, localValue);
   }
 
-  getData(key: string) {
+  getData(key: 'notes' | 'done') {
     const dataJSON = localStorage.getItem(key);
     return dataJSON ? JSON.parse(dataJSON) : [];
   }
@@ -57,5 +105,7 @@ export class NotesComponent {
         event.currentIndex
       );
     }
+    this.setData('notes', this.notes);
+    this.setData('done', this.done);
   }
 }

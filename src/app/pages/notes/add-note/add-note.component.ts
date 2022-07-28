@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Note } from 'src/app/shared/models/note.model';
 
 @Component({
-  selector: 'app-add-note',
+  selector: 'add-note',
   templateUrl: './add-note.component.html',
   styleUrls: ['./add-note.component.scss'],
 })

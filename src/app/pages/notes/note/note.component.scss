@@ -5,11 +5,13 @@
   justify-content: space-between;
   align-items: center;
 
-  border: 2px solid $main-brown;
   padding: 0.25rem;
+  margin-bottom: 0.5rem;
+
+  border: 2px solid $main-brown;
+  border-radius: 8px;
   background-color: $base-color;
   color: $main-brown;
-  margin: 0.5rem 0 ;
   cursor: move;
   position: relative;
 
