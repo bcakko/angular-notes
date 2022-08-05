@@ -1,47 +1,48 @@
-<add-note (addNoteEvent)="addNote($event)"></add-note>
+<div class="main-wrapper">
+  <add-note (addNoteEvent)="addNote($event)"></add-note>
+  <div cdkDropListGroup>
+    <div
+      class="notes-group"
+      cdkDropList
+      [cdkDropListData]="notes"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <h2>To do</h2>
+      <p *ngIf="!notes.length" class="info">There's nothing to do..</p>
+      <div class="note-wrapper" *ngFor="let note of notes" cdkDrag>
+        <note
+          [note_details]="note"
+          [key]="'notes'"
+          (toggleEditEvent)="toggleEdit($event)"
+          (removeNoteEvent)="removeNote($event)"
+        ></note>
+      </div>
+    </div>
 
-<div cdkDropListGroup>
-  <div
-    class="notes-group"
-    cdkDropList
-    [cdkDropListData]="notes"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <h2>To do</h2>
-    <p *ngIf="!notes.length">There's nothing to do..</p>
-    <div class="note-wrapper" *ngFor="let note of notes" cdkDrag>
-      <note
-        [note_details]="note"
-        [key]="'notes'"
-        (toggleEditEvent)="toggleEdit($event)"
-        (removeNoteEvent)="removeNote($event)"
-      ></note>
+    <div
+      class="notes-group"
+      cdkDropList
+      [cdkDropListData]="done"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <h2>Done</h2>
+      <p *ngIf="!done.length" class="info">You haven't done anything yet..</p>
+      <div class="note-wrapper" *ngFor="let note of done" cdkDrag>
+        <note
+          [note_details]="note"
+          [key]="'done'"
+          (toggleEditEvent)="toggleEdit($event)"
+          (removeNoteEvent)="removeNote($event)"
+        ></note>
+      </div>
     </div>
   </div>
 
-  <div
-    class="notes-group"
-    cdkDropList
-    [cdkDropListData]="done"
-    (cdkDropListDropped)="drop($event)"
-  >
-    <h2>Done</h2>
-    <p *ngIf="!done.length">You haven't done anything yet..</p>
-    <div class="note-wrapper" *ngFor="let note of done" cdkDrag>
-      <note
-        [note_details]="note"
-        [key]="'done'"
-        (toggleEditEvent)="toggleEdit($event)"
-        (removeNoteEvent)="removeNote($event)"
-      ></note>
-    </div>
-  </div>
+  <edit-note
+    *ngIf="isEditing"
+    [key]="editingKey"
+    [note_details]="editingNote"
+    (closeEditEvent)="cancelEdit()"
+    (editNoteSubmitEvent)="editNote($event)"
+  ></edit-note>
 </div>
-
-<edit-note
-  *ngIf="isEditing"
-  [key]="editingKey"
-  [note_details]="editingNote"
-  (closeEditEvent)="cancelEdit()"
-  (editNoteSubmitEvent)="editNote($event)"
-></edit-note>

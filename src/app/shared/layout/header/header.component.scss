@@ -1,18 +1,23 @@
 @import "../../../styles/_colors.scss";
 .container {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  margin-bottom: 1rem;
   padding: 1rem;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   font-size: 1.375rem;
   background-color: $accent-color;
   border-bottom: 2px solid $main-brown;
-  margin-bottom: 1rem;
 
   a {
+    text-decoration: none;
     padding: 0.5rem;
     color: $main-brown;
-    text-decoration: none;
   }
   a.active {
     text-decoration: underline;

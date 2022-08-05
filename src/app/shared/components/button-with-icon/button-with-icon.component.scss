@@ -6,8 +6,13 @@
   cursor: pointer;
   background-color: inherit;
 
-  .icon {
-    font-size: 1.5rem;
+  .pi {
+    font-size: 1.325rem;
+  }
+  .primary {
     color: $main-brown;
+  }
+  .danger {
+    color: $accent-color;
   }
 }

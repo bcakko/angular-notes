@@ -1,16 +1,32 @@
 <div class="note-container">
   <div class="note-details">
-    <h2>{{ note_details.heading }}</h2>
-    <p>{{ note_details.note }}</p>
+    <h2 class="note-header">{{ note_details.heading }}</h2>
+    <p class="note-content">{{ note_details.note }}</p>
   </div>
   <div class="note-buttons">
     <button-with-icon
-      [icon_class]="'icon-pencil'"
+      [icon_class]="'pi-pencil primary'"
       (buttonClick)="onToggleEdit()"
     ></button-with-icon>
     <button-with-icon
-      [icon_class]="'icon-cross'"
-      (buttonClick)="onRemoveNote()"
+      [icon_class]="'pi-minus-circle danger'"
+      (buttonClick)="onToggleRemove()"
     ></button-with-icon>
+    <p class="note-date">{{ date }} {{ time }}</p>
+  </div>
+</div>
+
+<div class="modal-container" *ngIf="removeOpen">
+  <div class="modal-backdrop"></div>
+  <div class="note-form">
+    <h3>Removing {{ note_details.heading }}?</h3>
+    <div class="button-group">
+      <button type="button" class="button primary" (click)="onRemoveNote()">
+        Submit
+      </button>
+      <button type="button" class="button danger" (click)="onToggleRemove()">
+        Cancel
+      </button>
+    </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { ButtonWithIconComponent } from './components/button-with-icon/button-with-icon.component';
 import { ButtonWithTextComponent } from './components/button-with-text/button-with-text.component';
+import { DialogComponent } from './components/UI/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ButtonWithTextComponent } from './components/button-with-text/button-wi
     FooterComponent,
     ButtonWithIconComponent,
     ButtonWithTextComponent,
+    DialogComponent,
   ],
   imports: [AppRoutingModule, BrowserModule],
   exports: [

@@ -1,6 +1,7 @@
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Note } from 'src/app/shared/models/note.model';
+import { DateDetailer } from 'src/app/shared/helpers/DateDetailer';
 
 @Component({
   selector: 'edit-note',
@@ -32,6 +33,7 @@ export class EditNoteComponent implements OnInit {
         id: this.note_details.id,
         heading: form.value.heading,
         note: form.value.note,
+        date: new DateDetailer(),
       },
       key: this.key,
     });
