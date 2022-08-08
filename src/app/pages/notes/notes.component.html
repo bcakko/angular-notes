@@ -14,7 +14,7 @@
           [note_details]="note"
           [key]="'notes'"
           (toggleEditEvent)="toggleEdit($event)"
-          (removeNoteEvent)="removeNote($event)"
+          (toggleRemoveEvent)="toggleRemove($event)"
         ></note>
       </div>
     </div>
@@ -32,7 +32,7 @@
           [note_details]="note"
           [key]="'done'"
           (toggleEditEvent)="toggleEdit($event)"
-          (removeNoteEvent)="removeNote($event)"
+          (toggleRemoveEvent)="toggleRemove($event)"
         ></note>
       </div>
     </div>
@@ -45,4 +45,12 @@
     (closeEditEvent)="cancelEdit()"
     (editNoteSubmitEvent)="editNote($event)"
   ></edit-note>
+
+  <remove-note
+    *ngIf="isRemoving"
+    [key]="removingKey"
+    [note_details]="removingNote"
+    (closeRemoveEvent)="closeRemove()"
+    (removeNoteEvent)="removeNote($event)"
+  ></remove-note>
 </div>

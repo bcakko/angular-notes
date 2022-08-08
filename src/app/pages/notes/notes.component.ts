@@ -15,9 +15,12 @@ import { Note } from 'src/app/shared/models/note.model';
 export class NotesComponent {
   notes: Note[] = this.getData('notes');
   done: Note[] = this.getData('done');
+  isRemoving: boolean = false;
   isEditing: boolean = false;
   editingNote!: Note;
   editingKey!: 'notes' | 'done';
+  removingNote!: Note;
+  removingKey!: 'notes' | 'done';
 
   constructor() {}
 
@@ -27,9 +30,9 @@ export class NotesComponent {
   }
 
   toggleEdit(detailsObj: { note: Note; key: 'notes' | 'done' }) {
-    this.isEditing = !this.isEditing;
     this.editingNote = detailsObj.note;
     this.editingKey = detailsObj.key;
+    this.isEditing = !this.isEditing;
   }
 
   cancelEdit() {
@@ -68,15 +71,26 @@ export class NotesComponent {
     this.setData(detailsObj.key, newArr);
   }
 
-  removeNote(detailsObj: { id: number; key: 'notes' | 'done' }) {
+  toggleRemove(detailsObj: { note: Note; key: 'notes' | 'done' }) {
+    this.removingNote = detailsObj.note;
+    this.removingKey = detailsObj.key;
+
+    this.isRemoving = !this.isRemoving;
+  }
+  closeRemove() {
+    this.isRemoving = false;
+  }
+
+  removeNote(detailsObj: { note: Note; key: 'notes' | 'done' }) {
     let newArr: Note[] = [];
     if (detailsObj.key === 'notes') {
-      newArr = this.notes.filter((item) => item.id !== detailsObj.id);
+      newArr = this.notes.filter((item) => item.id !== detailsObj.note.id);
       this.notes = newArr;
     } else {
-      newArr = this.done.filter((item) => item.id !== detailsObj.id);
+      newArr = this.done.filter((item) => item.id !== detailsObj.note.id);
       this.done = newArr;
     }
+    this.isRemoving = false;
     this.setData(detailsObj.key, newArr);
   }
 

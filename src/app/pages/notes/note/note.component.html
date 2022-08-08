@@ -15,18 +15,3 @@
     <p class="note-date">{{ date }} {{ time }}</p>
   </div>
 </div>
-
-<div class="modal-container" *ngIf="removeOpen">
-  <div class="modal-backdrop"></div>
-  <div class="note-form">
-    <h3>Removing {{ note_details.heading }}?</h3>
-    <div class="button-group">
-      <button type="button" class="button primary" (click)="onRemoveNote()">
-        Submit
-      </button>
-      <button type="button" class="button danger" (click)="onToggleRemove()">
-        Cancel
-      </button>
-    </div>
-  </div>
-</div>

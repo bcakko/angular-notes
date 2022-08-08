@@ -1,4 +1,5 @@
 @import "../../../styles/_colors.scss";
+
 .container {
   position: fixed;
   width: 100vw;
@@ -13,6 +14,8 @@
   font-size: 1.375rem;
   background-color: $accent-color;
   border-bottom: 2px solid $main-brown;
+
+  z-index: 2000;
 
   a {
     text-decoration: none;

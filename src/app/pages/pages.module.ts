@@ -11,6 +11,7 @@ import { AddNoteComponent } from './notes/add-note/add-note.component';
 import { NoteComponent } from './notes/note/note.component';
 import { NotesComponent } from './notes/notes.component';
 import { EditNoteComponent } from './notes/edit-note/edit-note.component';
+import { RemoveNoteComponent } from './notes/remove-note/remove-note.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { EditNoteComponent } from './notes/edit-note/edit-note.component';
     NoteComponent,
     AddNoteComponent,
     EditNoteComponent,
+    RemoveNoteComponent,
   ],
   imports: [BrowserModule, SharedModule, FormsModule, DragDropModule],
 })

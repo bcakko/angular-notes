@@ -18,8 +18,8 @@ export class NoteComponent implements OnInit {
     note: Note;
     key: 'notes' | 'done';
   }>();
-  @Output() removeNoteEvent = new EventEmitter<{
-    id: number;
+  @Output() toggleRemoveEvent = new EventEmitter<{
+    note: Note;
     key: 'notes' | 'done';
   }>();
   removeOpen: boolean = false;
@@ -38,10 +38,6 @@ export class NoteComponent implements OnInit {
   }
 
   onToggleRemove() {
-    this.removeOpen = !this.removeOpen;
-  }
-
-  onRemoveNote() {
-    this.removeNoteEvent.emit({ id: this.note_details.id, key: this.key });
+    this.toggleRemoveEvent.emit({ note: this.note_details, key: this.key });
   }
 }
